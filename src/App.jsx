@@ -6,6 +6,7 @@ import Footer from "./components/Footer";
 import Button from "./components/Button";
 import Bulb from "./components/Bulb";
 import Counter from "./components/Counter";
+import Register from "./components/Register";
 
 function App() {
   // const buttonProps = {
@@ -26,8 +27,9 @@ function App() {
       <Button text={"블로그"}>
         <Header />
       </Button> */}
-      <Bulb />
-      <Counter />
+      {/* <Bulb />
+      <Counter /> */}
+      <Register />
     </>
   );
 }
