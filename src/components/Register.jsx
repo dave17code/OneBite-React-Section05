@@ -4,7 +4,7 @@
 // 3. 국적
 // 4. 자기소개
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 const Register = () => {
   // const [name, setName] = useState("이름");
@@ -19,8 +19,16 @@ const Register = () => {
     bio: "",
   });
 
+  // const refObj = useRef(0);
+  // console.log("Register 렌더링");
+  // console.log(refObj.current);
+  const countRef = useRef(0);
+  const inputRef = useRef();
+
   // 통합 이벤트 핸들러
   const onChange = (e) => {
+    countRef.current++;
+    console.log(countRef.current);
     console.log(e.target.name, e.target.value);
     setInput({
       ...input,
@@ -58,10 +66,27 @@ const Register = () => {
   //   });
   // };
 
+  const onSubmit = () => {
+    if (input.name === "") {
+      // 이름을 입력하는 DOM 요소 포커스
+      console.log(inputRef.current);
+      inputRef.current.focus();
+    }
+  };
+
   return (
     <div>
+      {/* <button
+        onClick={() => {
+          refObj.current++;
+          console.log(refObj.current);
+        }}
+      >
+        ref +1
+      </button> */}
       <div>
         <input
+          ref={inputRef}
           name="name"
           value={input.name}
           onChange={onChange}
@@ -90,6 +115,7 @@ const Register = () => {
         <textarea name="bio" value={input.bio} onChange={onChange} />
         {input.bio}
       </div>
+      <button onClick={onSubmit}>제출</button>
     </div>
   );
 };
